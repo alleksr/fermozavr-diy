@@ -23,4 +23,4 @@ If a letter is easier, send the same note to [info@fermozavr.ru](mailto:info@fer
 
 ## What belongs here
 
-Test protocols, parts lists, schematics, and firmware, once they are ready to repeat. Article drafts and covers stay in the working folder.
+Test protocols, parts lists, schematics, and firmware, once they are ready to repeat. 
