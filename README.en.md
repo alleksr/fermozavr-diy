@@ -19,8 +19,6 @@ The form stays open for the whole project: [fermozavr.ru/diy](https://fermozavr.
 
 Discussion is in the [Fermozavr](https://t.me/fermozavr) channel. A comment under a post does not replace the form.
 
-Until a bill of materials is published for a specific trial, do not buy equipment just for this project.
-
 If a letter is easier, send the same note to [info@fermozavr.ru](mailto:info@fermozavr.ru).
 
 ## What belongs here
