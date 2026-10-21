@@ -4,3 +4,6 @@ covers/
 shorts/
 notes/
 logo/
+station/data/
+__pycache__/
+*.py[cod]

@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Фермозавр — дашборд</title>
+  <link rel="stylesheet" href="/style.css">
+</head>
+<body>
+  <div class="app">
+    <aside class="nav" id="nav">
+      <div class="nav-head">
+        <a class="nav-logo" href="https://fermozavr.ru" target="_blank" rel="noopener">
+          <img src="/logo-mark.png" alt="Фермозавр" width="40" height="40">
+          <span class="nav-brand">Фермозавр</span>
+        </a>
+        <button type="button" id="nav-toggle" aria-expanded="true" aria-controls="nav">Свернуть</button>
+      </div>
+      <p class="nav-label">Дашборды</p>
+      <nav id="dashboard-list" aria-label="Дашборды"></nav>
+      <button type="button" id="new-dashboard" class="nav-new">Новый дашборд</button>
+    </aside>
+    <div class="main">
+  <header class="topbar">
+    <div class="brand">
+      <input id="dash-title" aria-label="Название дашборда" readonly>
+      <p class="origin">Строки вручную, сенсор для узла опытом ещё не выбран.</p>
+    </div>
+    <div class="range" role="group" aria-label="Окно графиков и журнала">
+      <button type="button" data-range="1h">1 ч</button>
+      <button type="button" data-range="4h">4 ч</button>
+      <button type="button" data-range="12h">12 ч</button>
+      <button type="button" data-range="1d">сутки</button>
+      <button type="button" data-range="all">всё</button>
+    </div>
+    <div class="top-actions">
+      <button type="button" id="add-widget" hidden>Добавить карточку</button>
+      <button type="button" id="reset-layout" class="quiet" hidden>Собрать заново</button>
+      <button type="button" id="delete-dashboard" class="quiet" hidden>Удалить дашборд</button>
+      <button type="button" id="toggle-edit" class="primary">Править</button>
+    </div>
+  </header>
+  <p id="load-error" class="banner bad" role="alert"></p>
+  <p id="page-status" class="banner" role="status"></p>
+  <div id="canvas"></div>
+
+  <section id="entry">
+    <h2>Строка в журнал</h2>
+    <p class="detail">Позже сюда пишет плата. Сейчас число можно вписать руками. В журнале останется то, что пришло, вместе с сотыми.</p>
+    <form id="reading-form" class="entry" autocomplete="off">
+      <label>Время
+        <input name="observed_at" type="datetime-local" step="1">
+      </label>
+      <div class="time-helpers">
+        <button type="button" id="time-now">сейчас</button>
+        <button type="button" id="time-40">40 минут назад</button>
+      </div>
+      <label>Узел
+        <input name="node_id" value="station" required maxlength="64">
+      </label>
+      <label>Экземпляр
+        <input name="sensor_id" value="SHT40-A" required maxlength="64">
+      </label>
+      <label>Величина
+        <select name="quantity">
+          <option value="air_temperature">температура воздуха</option>
+          <option value="relative_humidity">относительная влажность</option>
+          <option value="reference_temperature">температура опоры</option>
+        </select>
+      </label>
+      <label>Число
+        <input name="value" type="number" step="any" required inputmode="decimal">
+      </label>
+      <p id="unit-hint" class="hint span-2">Единица в строке: °C. Меняется вместе с величиной.</p>
+      <label>Опыт
+        <input name="experiment" maxlength="64" placeholder="необязательно">
+      </label>
+      <label class="span-2">Заметка
+        <input name="note" maxlength="500" placeholder="сквозняк, солнце на банку, открытая крышка">
+      </label>
+      <button type="submit" class="primary">Записать в журнал</button>
+      <p id="form-status" class="status span-2" role="status"></p>
+    </form>
+  </section>
+  <footer class="site-foot">
+    <a class="foot-brand" href="https://fermozavr.ru" target="_blank" rel="noopener">
+      <img src="/logo-mark.png" alt="" width="28" height="28">
+      <span>Фермозавр</span>
+    </a>
+    <p class="foot-copy">© 2026 Фермозавр. Все права защищены.</p>
+    <div class="foot-contacts">
+      <a href="https://t.me/fermozavr" target="_blank" rel="noopener">Telegram</a>
+      <a href="https://t.me/fermozavr_bot" target="_blank" rel="noopener">@fermozavr_bot</a>
+      <a href="mailto:info@fermozavr.ru">info@fermozavr.ru</a>
+      <a href="https://fermozavr.ru/rss">RSS</a>
+      <a href="/license">Лицензия</a>
+    </div>
+    <p class="foot-note">Раскладка дашбордов хранится на этом сервере. Снятая карточка не стирает журнал. Фразы считает <code>station/decisions.py</code>.</p>
+  </footer>
+    </div>
+  </div>
+
+  <dialog id="picker">
+    <form method="dialog">
+      <h2>Добавить карточку</h2>
+      <div id="picker-list"></div>
+      <button type="submit" class="quiet">Закрыть</button>
+    </form>
+  </dialog>
+  <dialog id="editor">
+    <form id="editor-form">
+      <h2>Карточка</h2>
+      <label>Название
+        <input name="title" maxlength="80">
+      </label>
+      <p class="hint">Ширина, клеток из 12</p>
+      <div class="choice" id="editor-width"></div>
+      <p class="hint">Высота</p>
+      <div class="choice" id="editor-height"></div>
+      <div id="editor-extra"></div>
+      <div class="dialog-actions">
+        <button type="button" id="editor-copy" class="quiet">Копия</button>
+        <button type="button" id="editor-cancel" class="quiet">Отмена</button>
+        <button type="submit" class="primary">Готово</button>
+      </div>
+    </form>
+  </dialog>
+  <script src="/app.js"></script>
+</body>
+</html>
