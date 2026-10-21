@@ -10,6 +10,7 @@ A number on a screen is not yet a measurement. We state the task and the accurac
 
 The essays are published on [Fermozavr](https://fermozavr.ru). They are not stored in this repository. The articles themselves are in Russian.
 
+- [Project documentation](docs/README.en.md) — station overview, reading format, and decision rules.
 - [A smart farm, built by hand: this winter we build the system that goes to the field in spring](https://fermozavr.ru/samodelki/umnaya-ferma-svoimi-rukami-etoy-zimoy-stroim-sistemu-kotoraya-vesnoy-vyydet-v-po)
 - [How to join Fermozavr DIY, and what we do next](https://fermozavr.ru/samodelki/kak-prisoedinitsya-k-fermozavr-diy-i-chto-my-budem-delat-dalshe)
 - [23.47 °C: the bench and the first shopping list](https://fermozavr.ru/samodelki/23-47-c-stend-i-pervyy-spisok-pokupok)

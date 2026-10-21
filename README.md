@@ -10,6 +10,7 @@
 
 Тексты цикла выходят на [Фермозавре](https://fermozavr.ru). В этот репозиторий статьи не кладутся.
 
+- [Документация проекта](docs/README.md) — устройство станции, формат показаний и правила решений.
 - [Умная ферма своими руками: этой зимой строим систему, которая весной выйдет в поле](https://fermozavr.ru/samodelki/umnaya-ferma-svoimi-rukami-etoy-zimoy-stroim-sistemu-kotoraya-vesnoy-vyydet-v-po)
 - [Как присоединиться к Fermozavr DIY и что мы будем делать дальше](https://fermozavr.ru/samodelki/kak-prisoedinitsya-k-fermozavr-diy-i-chto-my-budem-delat-dalshe)
 - [23,47 °C: стенд и первый список покупок](https://fermozavr.ru/samodelki/23-47-c-stend-i-pervyy-spisok-pokupok)
