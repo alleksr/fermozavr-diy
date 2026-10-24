@@ -11,6 +11,7 @@ A number on a screen is not yet a measurement. We state the task and the accurac
 The essays are published on [Fermozavr](https://fermozavr.ru). They are not stored in this repository. The articles themselves are in Russian.
 
 - [Project documentation](docs/README.en.md) — station overview, reading format, and decision rules.
+- [ESP32 on the bench: preparing the connection to the dashboard](https://fermozavr.ru/samodelki/esp32-na-stole-gotovim-podklyuchenie-k-nashemu-dashbordu)
 - [A smart farm, built by hand: this winter we build the system that goes to the field in spring](https://fermozavr.ru/samodelki/umnaya-ferma-svoimi-rukami-etoy-zimoy-stroim-sistemu-kotoraya-vesnoy-vyydet-v-po)
 - [How to join Fermozavr DIY, and what we do next](https://fermozavr.ru/samodelki/kak-prisoedinitsya-k-fermozavr-diy-i-chto-my-budem-delat-dalshe)
 - [23.47 °C: the bench and the first shopping list](https://fermozavr.ru/samodelki/23-47-c-stend-i-pervyy-spisok-pokupok)
@@ -40,6 +41,8 @@ Then open `http://127.0.0.1:8321`.
 
 There are no extra libraries. Python 3 itself is enough. This repository has no dependency file, and `pip` installs nothing for this page. On Windows the same command is sometimes named `python`.
 
+The ESP32 recorder is in `firmware/fermozavr_recorder/`. One build sends the same row over USB, Wi-Fi, or Bluetooth. Until a sensor answers with a number, nothing is written to the log. How to enable a link: [station documentation](docs/station.en.md).
+
 ## What belongs here
 
-Test protocols, parts lists, schematics, and firmware, once they are ready to repeat. The page this starts from is already in `station/`.
+Test protocols, parts lists, and schematics, once they are ready to repeat. The page is in `station/`, and the board recorder is in `firmware/fermozavr_recorder/`.

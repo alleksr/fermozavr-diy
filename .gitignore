@@ -5,5 +5,6 @@ shorts/
 notes/
 logo/
 station/data/
+firmware/fermozavr_recorder/config.h
 __pycache__/
 *.py[cod]

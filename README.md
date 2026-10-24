@@ -11,6 +11,7 @@
 Тексты цикла выходят на [Фермозавре](https://fermozavr.ru). В этот репозиторий статьи не кладутся.
 
 - [Документация проекта](docs/README.md) — устройство станции, формат показаний и правила решений.
+- [ESP32 на столе. Готовим подключение к нашему дашборду](https://fermozavr.ru/samodelki/esp32-na-stole-gotovim-podklyuchenie-k-nashemu-dashbordu)
 - [Умная ферма своими руками: этой зимой строим систему, которая весной выйдет в поле](https://fermozavr.ru/samodelki/umnaya-ferma-svoimi-rukami-etoy-zimoy-stroim-sistemu-kotoraya-vesnoy-vyydet-v-po)
 - [Как присоединиться к Fermozavr DIY и что мы будем делать дальше](https://fermozavr.ru/samodelki/kak-prisoedinitsya-k-fermozavr-diy-i-chto-my-budem-delat-dalshe)
 - [23,47 °C: стенд и первый список покупок](https://fermozavr.ru/samodelki/23-47-c-stend-i-pervyy-spisok-pokupok)
@@ -40,6 +41,8 @@ python3 station/server.py
 
 Отдельных библиотек нет. Нужен сам Python 3, файл зависимостей в репозитории не лежит, и `pip` здесь ничего не устанавливает. На Windows та же команда иногда называется `python`.
 
+Запись с ESP32 лежит в `firmware/fermozavr_recorder/`. Одна сборка отдаёт ту же строку по USB, по Wi‑Fi или по Bluetooth. Пока датчик не ответил числом, в журнал ничего не пишется. Как включить путь: [документация станции](docs/station.md).
+
 ## Что будет здесь
 
-Протоколы испытаний, перечни деталей, схемы и прошивки — по мере того, как они станут готовы к повторению. Страница, с которой это начинается, уже лежит в `station/`.
+Протоколы испытаний, перечни деталей и схемы — по мере того, как они станут готовы к повторению. Страница лежит в `station/`, запись с платы — в `firmware/fermozavr_recorder/`.

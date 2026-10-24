@@ -1,7 +1,8 @@
 """Local screen for the Fermozavr T/RH node.
 
-Bind is localhost only. Sensors are not required: POST /api/readings
-accepts the same row the bench and the field node will send later.
+The default bind is localhost. Set FVZ_HOST when an ESP32 should post over
+Wi-Fi. Sensors are not required: POST /api/readings accepts the same row
+the bench and the field node will send later.
 """
 
 from __future__ import annotations
@@ -987,12 +988,20 @@ def create_server(db_path: Path, host: str = HOST, port: int = DEFAULT_PORT) -> 
     return StationServer((host, port), db_path)
 
 
+def listen_host() -> str:
+    raw = os.environ.get("FVZ_HOST", HOST).strip()
+    return raw or HOST
+
+
 def main() -> None:
     port = int(os.environ.get("FVZ_PORT", str(DEFAULT_PORT)))
+    host = listen_host()
     root = Path(__file__).resolve().parent
     db_path = Path(os.environ.get("FVZ_DB", str(root / "data" / "station.sqlite")))
-    httpd = create_server(db_path, HOST, port)
-    print(f"Фермозавр, узел T/RH  http://{HOST}:{port}")
+    httpd = create_server(db_path, host, port)
+    print(f"Фермозавр, узел T/RH  http://127.0.0.1:{port}")
+    if host != HOST:
+        print(f"Слушаю {host}:{port}. Вход для строки без пароля.")
     try:
         httpd.serve_forever()
     except KeyboardInterrupt:
